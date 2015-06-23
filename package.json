@@ -1,0 +1,26 @@
+{
+  "name": "rr-guerrillamail",
+  "version": "0.0.1",
+  "description": "node library for interacting with Guerrilla Mail - creates and checks temporary email mailboxes",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedRiverSoftware/rr-guerrillamail.git"
+  },
+  "keywords": [
+    "guerrillamail",
+    "email",
+    "rr",
+    "redriver"
+  ],
+  "author": "Red River Software",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RedRiverSoftware/rr-guerrillamail/issues"
+  },
+  "homepage": "https://github.com/RedRiverSoftware/rr-guerrillamail#readme",
+  "dependencies": {
+    "bluebird": "^2.9.30",
+    "superagent": "^1.2.0"
+  }
+}
