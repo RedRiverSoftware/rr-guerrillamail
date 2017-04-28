@@ -137,6 +137,24 @@ TempMailbox.prototype.waitForEmail = function(summaryFilter, iterationDelay) {
 		.then(checkLoop);
 };
 
+TempMailbox.prototype.deleteMail = function(id) {
+	var defer = Promise.defer();
+	
+	this.agent
+		.get('http://api.guerrillamail.com/ajax.php')
+		.query({
+			f: 'del_email',
+			email_ids: id
+		})
+		.end(function(err, res) {
+			if (err) { defer.reject("request failed"); return; }
+			
+			defer.resolve(res.body);
+		});
+	
+	return this.init_promise.then(function() { return defer.promise; });
+};
+
 module.exports = TempMailbox;
 /*
 var mailbox = new TempMailbox();
