@@ -7,7 +7,7 @@ function TempMailbox() {
 	var first_fetch = Promise.defer();
 	var me = this;
 	
-	this.agent = superagent.agent();
+	this.agent = superagent();
 	this.sequence = 0;
 	this.init_promise = init.promise;
 	this.messages = [];
