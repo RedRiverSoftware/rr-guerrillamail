@@ -115,10 +115,11 @@ TempMailbox.prototype.getMailDetail = function(id) {
 	return this.init_promise.then(function() { return defer.promise; });
 };
 
-TempMailbox.prototype.waitForEmail = function(summaryFilter, iterationDelay) {
+TempMailbox.prototype.waitForEmail = function(summaryFilter, iterationDelay, retries) {
 	var me = this;
 	
 	iterationDelay = iterationDelay || 2500;
+  retries = retries || -1;
 	
 	function checkLoop(mail) {
 		if (mail) {
@@ -126,10 +127,10 @@ TempMailbox.prototype.waitForEmail = function(summaryFilter, iterationDelay) {
 			if (match) {
 				return me.getMailDetail(mail.mail_id);
 			}
-			return me.getNextMailSummary().then(checkLoop);
+			return retries-- === 0 ? false : me.getNextMailSummary().then(checkLoop);
 		}
 		
-		return Promise.delay(iterationDelay).then(function() { return me.getNextMailSummary(); }).then(checkLoop);
+		return retries-- === 0 ? false : Promise.delay(iterationDelay).then(function() { return me.getNextMailSummary(); }).then(checkLoop);
 	}
 	
 	return this.init_promise
