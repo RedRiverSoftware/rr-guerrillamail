@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/RedRiverSoftware/rr-guerrillamail#readme",
   "dependencies": {
-    "bluebird": "^2.9.30",
-    "superagent": "^1.2.0"
+    "bluebird": "^3.5.2",
+    "superagent": "^3.8.3"
   }
 }
